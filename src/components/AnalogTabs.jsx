@@ -1,0 +1,1 @@
+export default function AnalogTabs({points,value,onChange}){return <div className="tabs">{points.map(p=><button className={value?.gid===p.gid?"tab active":"tab"} key={p.gid} onClick={()=>onChange(p)}>{p.type}</button>)}</div>}

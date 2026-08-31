@@ -1,0 +1,1 @@
+export default function StationSelector({stations,value,onChange,disabled}){return <label className="field"><span>Station</span><select value={value} onChange={e=>onChange(e.target.value)} disabled={disabled}><option value="">Select station</option>{stations.map(s=><option key={s.sub} value={s.sub}>{s.sub}</option>)}</select></label>}

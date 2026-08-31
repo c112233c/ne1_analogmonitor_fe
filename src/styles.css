@@ -1,0 +1,639 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #0f172a;
+    background: #f1f5f9;
+    font-synthesis: none;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    background: #f1f5f9;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button:disabled,
+select:disabled,
+input:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+.navbar-container {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgb(15 23 42 / 4%);
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 0 24px;
+    border-bottom: 1px solid #e2e8f0;
+    background: rgb(255 255 255 / 96%);
+}
+
+.navbar-main {
+    min-height: 58px;
+}
+
+.navbar-pages {
+    min-height: 46px;
+    justify-content: flex-start;
+    box-shadow: none;
+}
+
+.navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.navbar-username {
+    max-width: 220px;
+    overflow: hidden;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.navbar-logout {
+    min-height: 34px;
+    padding: 6px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    background: #fff;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.navbar-logout:hover {
+    border-color: #94a3b8;
+    background: #f8fafc;
+}
+
+.navbar-brand {
+    font-size: 15px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: stretch;
+    gap: 4px;
+    height: 46px;
+}
+
+.navbar-link {
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    border-bottom: 3px solid transparent;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.navbar-link:hover {
+    color: #2563eb;
+    background: #f8fafc;
+}
+
+.navbar-link.active {
+    border-bottom-color: #2563eb;
+    color: #2563eb;
+}
+
+.app-shell {
+    width: min(1440px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 28px 0 48px;
+}
+
+.topbar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 22px;
+}
+
+.brand {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: #475569;
+}
+
+.brand span {
+    color: #2563eb;
+}
+
+.topbar h1 {
+    margin: 7px 0 5px;
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.1;
+}
+
+.topbar p {
+    margin: 0;
+    color: #64748b;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 1px solid #dbe2ea;
+    border-radius: 999px;
+    background: #fff;
+    font-size: 13px;
+    color: #475569;
+}
+
+.status i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+}
+
+.card {
+    margin-bottom: 18px;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgb(15 23 42 / 4%);
+}
+
+.controls {
+    display: grid;
+    gap: 14px;
+}
+
+.control-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 12px;
+    align-items: end;
+}
+
+.field {
+    display: grid;
+    gap: 6px;
+}
+
+.field span {
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.field input,
+.field select,
+.compare-add-row select {
+    width: 100%;
+    min-height: 40px;
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #fff;
+    color: #0f172a;
+}
+
+.search {
+    min-height: 40px;
+    padding: 8px 16px;
+    border: 0;
+    border-radius: 8px;
+    background: #2563eb;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.presets button {
+    padding: 6px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    background: #fff;
+    color: #475569;
+    cursor: pointer;
+}
+
+.error {
+    margin-bottom: 18px;
+    padding: 12px 14px;
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+.section-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.eyebrow {
+    margin-bottom: 5px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #64748b;
+}
+
+.section-head h2 {
+    margin: 0;
+    font-size: 19px;
+}
+
+.chip,
+.sample-count {
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: #f1f5f9;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.point-card {
+    display: grid;
+    gap: 18px;
+}
+
+.analog-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.analog-tabs button,
+.tabs button {
+    padding: 8px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.analog-tabs button.active,
+.tabs button.active {
+    border-color: #2563eb;
+    background: #eff6ff;
+    color: #2563eb;
+    font-weight: 700;
+}
+
+.summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.reading {
+    margin: 5px 0 14px;
+    font-size: 34px;
+    font-weight: 800;
+}
+
+.reading small {
+    margin-left: 7px;
+    font-size: 15px;
+    color: #64748b;
+}
+
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 26px;
+}
+
+.stats > div {
+    display: grid;
+    gap: 3px;
+}
+
+.stats span {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.stats b {
+    font-size: 18px;
+}
+
+.stats-large {
+    gap: clamp(28px, 7vw, 100px);
+    margin-top: 12px;
+}
+
+.stats-large b {
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.05;
+}
+
+.stats-large b small {
+    margin-left: 7px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.stat-min b,
+.value-min {
+    color: #2563eb;
+}
+
+.stat-avg b,
+.value-avg {
+    color: #16a34a;
+}
+
+.stat-max b,
+.value-max {
+    color: #dc2626;
+}
+
+.update {
+    min-width: 150px;
+    text-align: right;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.update strong {
+    color: #334155;
+}
+
+.chart-card,
+.table-card {
+    overflow: hidden;
+}
+
+.chart-wrap {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.empty-chart {
+    display: grid;
+    min-height: 240px;
+    place-items: center;
+    color: #64748b;
+}
+
+.table-meta {
+    margin: 14px 0 10px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.data-table th,
+.data-table td {
+    padding: 11px 12px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+}
+
+.data-table th {
+    background: #f8fafc;
+    color: #475569;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.data-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.table-empty {
+    padding: 60px 20px;
+    text-align: center;
+    color: #64748b;
+}
+
+.compare-selection {
+    display: grid;
+    gap: 18px;
+}
+
+.compare-add-row select {
+    max-width: 720px;
+}
+
+.compare-points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.compare-point {
+    position: relative;
+    display: grid;
+    gap: 3px;
+    min-width: 190px;
+    padding: 12px 38px 12px 14px;
+    border: 1px solid #dbe2ea;
+    border-radius: 10px;
+    background: #f8fafc;
+}
+
+.compare-point span {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.compare-point strong {
+    font-size: 14px;
+}
+
+.compare-point small {
+    color: #64748b;
+}
+
+.compare-point button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 26px;
+    height: 26px;
+    border: 0;
+    border-radius: 50%;
+    background: #e2e8f0;
+    cursor: pointer;
+}
+
+.metric-toggles {
+    display: flex;
+    gap: 8px;
+}
+
+.metric-toggle {
+    min-width: 72px;
+    padding: 8px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: white;
+    color: #64748b;
+    cursor: pointer;
+}
+
+.metric-toggle.active.min {
+    border-color: #2563eb;
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.metric-toggle.active.avg {
+    border-color: #16a34a;
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+.metric-toggle.active.max {
+    border-color: #dc2626;
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.compare-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    margin: 16px 0 8px;
+    font-size: 13px;
+}
+
+.compare-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.compare-legend i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.compare-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+@media (max-width: 1100px) {
+    .control-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .navbar {
+        padding: 0 12px;
+    }
+
+    .navbar-brand {
+        display: none;
+    }
+
+    .navbar-pages {
+        padding: 0 12px;
+    }
+
+    .navbar-user {
+        margin-left: 0;
+    }
+
+    .navbar-username {
+        max-width: 110px;
+    }
+
+    .navbar-links {
+        width: 100%;
+    }
+
+    .navbar-link {
+        flex: 1;
+        justify-content: center;
+        padding: 0 8px;
+        font-size: 13px;
+    }
+
+    .app-shell {
+        width: min(100% - 20px, 1440px);
+        padding-top: 18px;
+    }
+
+    .topbar,
+    .summary {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .control-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .update {
+        min-width: 0;
+        text-align: left;
+    }
+
+    .stats-large {
+        gap: 22px;
+    }
+
+    .stats-large b {
+        font-size: 28px;
+    }
+
+    .compare-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+}

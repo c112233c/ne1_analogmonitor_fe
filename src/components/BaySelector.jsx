@@ -1,0 +1,1 @@
+export default function BaySelector({bays,value,onChange,disabled}){return <label className="field"><span>Bay</span><select value={value} onChange={e=>onChange(e.target.value)} disabled={disabled}><option value="">Select bay</option>{bays.map(b=><option key={b.bay} value={b.bay}>{b.bay}</option>)}</select></label>}
