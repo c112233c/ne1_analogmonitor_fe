@@ -1,6 +1,12 @@
 import keycloak from "../auth/keycloak";
 
-const API_BASE = "/api/analog";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+if (!API_BASE_URL) {
+    console.error("Missing VITE_API_BASE_URL");
+}
+
+const API_BASE = `${API_BASE_URL || ""}/api/analog`;
 
 async function request(url) {
     if (keycloak.authenticated) {
