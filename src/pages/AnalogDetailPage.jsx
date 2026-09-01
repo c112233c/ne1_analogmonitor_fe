@@ -92,10 +92,17 @@ export default function AnalogDetailPage() {
         if (stations.length && station) load();
     }, [station]);
 
+    const formatCsvDate = (value) => {
+        if (!value) return "";
+        const match = String(value).match(/^(\d{4})[-/](\d{2})[-/](\d{2})[ T](\d{2}):(\d{2})/);
+        if (match) return `${match[1]}/${match[2]}/${match[3]} ${match[4]}:${match[5]}`;
+        return formatDate(value).replace(/\s?(AM|PM)$/i, "");
+    };
+
     const exportCsv = () => {
         if (!rows.length) return;
         const header = ["Date Time", "Sub", "Bay", "Type", "Unit", "Min", "Avg", "Max"];
-        const body = rows.map((row) => [formatDate(row.date_time), row.sub, row.bay, row.type, row.unit, row.min, row.avg, row.max]);
+        const body = rows.map((row) => [formatCsvDate(row.date_time), row.sub, row.bay, row.type, row.unit, row.min, row.avg, row.max]);
         const csv = [header, ...body].map((line) => line.map(csvValue).join(",")).join("\r\n");
         const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
         const url = URL.createObjectURL(blob);
