@@ -85,7 +85,62 @@
     color: #fff;
 }
 
+.detail-station-group {
+    min-width: 220px;
+}
+
+.station-select-label {
+    display: grid;
+    gap: 6px;
+}
+
+.station-select-label > span {
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.station-select-wrap {
+    position: relative;
+}
+
+.station-select-wrap select {
+    width: 100%;
+    min-height: 40px;
+    padding: 8px 36px 8px 38px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    background: #fff;
+    color: #0f172a;
+    font-weight: 700;
+    outline: none;
+    cursor: pointer;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.station-select-wrap select:hover {
+    border-color: #94a3b8;
+}
+
+.station-select-wrap select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgb(37 99 235 / 10%);
+}
+
+.station-icon {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #2563eb;
+    font-size: 18px;
+    pointer-events: none;
+    z-index: 1;
+}
+
 .detail-date-group {
+    position: relative;
+    z-index: 20;
     display: flex;
     align-items: flex-end;
     gap: 10px;
@@ -102,12 +157,45 @@
     font-weight: 600;
 }
 
-.detail-date-group input {
+.detail-date-group input,
+.detail-date-group .date-picker-input {
     min-height: 40px;
-    padding: 8px 10px;
+    min-width: 150px;
+    padding: 8px 12px;
     border: 1px solid #cbd5e1;
-    border-radius: 8px;
+    border-radius: 9px;
     background: #fff;
+    color: #0f172a;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+    color-scheme: light;
+}
+
+.detail-date-group input:hover {
+    border-color: #94a3b8;
+    background: #f8fafc;
+}
+
+.detail-date-group input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgb(37 99 235 / 10%);
+    background: #fff;
+}
+
+.detail-date-group .date-picker-input {
+    appearance: none;
+}
+
+.detail-date-group .date-picker-input::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+.detail-date-group input::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
 }
 
 .date-separator {
@@ -143,6 +231,8 @@
 }
 
 .detail-table-card {
+    position: relative;
+    z-index: 1;
     overflow: hidden;
     border: 1px solid #e2e8f0;
     border-radius: 14px;
@@ -230,6 +320,10 @@
     .detail-table-header {
         align-items: flex-start;
         flex-direction: column;
+    }
+
+    .detail-station-group {
+        min-width: 0;
     }
 
     .detail-date-group {

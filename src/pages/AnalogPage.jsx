@@ -1,4 +1,6 @@
 import {useEffect,useState} from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import {getStations,getBays,getPoints,getHistory} from "../api/analog";
 import StationSelector from "../components/StationSelector";
 import BaySelector from "../components/BaySelector";
@@ -7,6 +9,8 @@ import AnalogSummary from "../components/AnalogSummary";
 import AnalogChart from "../components/AnalogChart";
 
 const day=d=>d.toISOString().slice(0,10);
+const parseDate=value=>value?new Date(`${value}T00:00:00`):null;
+const formatInputDate=date=>date?`${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`:"";
 export default function AnalogPage(){
  const now=new Date(), prev=new Date(now); prev.setDate(now.getDate()-1);
  const [stations,setStations]=useState([]),[bays,setBays]=useState([]),[points,setPoints]=useState([]);
@@ -21,7 +25,7 @@ export default function AnalogPage(){
  const preset=(days)=>{const e=new Date(),s=new Date(e);s.setDate(e.getDate()-days);setFrom(day(s));setTo(day(e));};
  return <main className="app-shell">
   <header className="topbar"><div><div className="brand">SCADA <span>ANALOG</span></div><h1>Analog Monitoring</h1><p>Historical min / avg / max from 30-minute SCADA data</p></div><div className="status"><i/> MariaDB</div></header>
-  <section className="card controls"><div className="control-grid"><StationSelector stations={stations} value={station} onChange={setStation}/><BaySelector bays={bays} value={bay} onChange={setBay} disabled={!station}/><label className="field"><span>From</span><input type="date" value={from} onChange={e=>setFrom(e.target.value)}/></label><label className="field"><span>To</span><input type="date" value={to} onChange={e=>setTo(e.target.value)}/></label><button className="search" disabled={!point||loading} onClick={load}>{loading?"Loading...":"Search"}</button></div><div className="presets"><button onClick={()=>preset(0)}>Today</button><button onClick={()=>preset(1)}>Last 24 Hours</button><button onClick={()=>preset(7)}>Last 7 Days</button><button onClick={()=>preset(30)}>Last 30 Days</button></div></section>
+  <section className="card controls"><div className="control-grid"><StationSelector stations={stations} value={station} onChange={setStation}/><BaySelector bays={bays} value={bay} onChange={setBay} disabled={!station}/><label className="field"><span>From</span><DatePicker selected={parseDate(from)} onChange={date=>setFrom(formatInputDate(date))} dateFormat="dd/MM/yyyy" className="date-picker-input" /></label><label className="field"><span>To</span><DatePicker selected={parseDate(to)} onChange={date=>setTo(formatInputDate(date))} dateFormat="dd/MM/yyyy" className="date-picker-input" /></label><button className="search" disabled={!point||loading} onClick={load}>{loading?"Loading...":"Search"}</button></div><div className="presets"><button onClick={()=>preset(0)}>Today</button><button onClick={()=>preset(1)}>Last 24 Hours</button><button onClick={()=>preset(7)}>Last 7 Days</button><button onClick={()=>preset(30)}>Last 30 Days</button></div></section>
   {error&&<div className="error">{error}</div>}
   <section className="card point-card"><div className="section-head"><div><div className="eyebrow">Analog points</div><h2>{station&&bay?`${station} / ${bay}`:"Select a station and bay"}</h2></div>{point&&<span className="chip">GID {point.gid}</span>}</div>
   <AnalogTabs points={points} value={point} onChange={p=>{setPoint(p);setData([])}}/></section>

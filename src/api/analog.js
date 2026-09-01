@@ -47,5 +47,5 @@ export const getPoints = (sub, bay) =>
 export const getHistory = (gid, from, to) =>
     request(`${API_BASE}/history?${new URLSearchParams({ gid, from, to })}`);
 
-export const getDetail = (type, from, to) =>
-    request(`${API_BASE}/detail?${new URLSearchParams({ type, from, to })}`);
+export const getDetail = (type, from, to, sub = "") =>
+    request(`${API_BASE}/detail?${new URLSearchParams({ type, from, to, ...(sub ? { sub } : {}) })}`);

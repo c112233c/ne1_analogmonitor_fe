@@ -212,7 +212,8 @@ input:disabled {
 
 .field input,
 .field select,
-.compare-add-row select {
+.compare-add-row select,
+.date-picker-input {
     width: 100%;
     min-height: 40px;
     padding: 8px 10px;
@@ -449,6 +450,44 @@ input:disabled {
     background: #f8fafc;
 }
 
+.detail-loading {
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    color: #64748b;
+}
+
+.detail-loading > div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.detail-loading strong {
+    color: #334155;
+}
+
+.detail-loading span {
+    font-size: 13px;
+}
+
+.detail-spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid #e2e8f0;
+    border-top-color: #2563eb;
+    border-radius: 50%;
+    animation: detail-spin 0.8s linear infinite;
+}
+
+@keyframes detail-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .table-empty {
     padding: 60px 20px;
     text-align: center;
@@ -519,6 +558,28 @@ input:disabled {
     background: white;
     color: #64748b;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.metric-line {
+    display: inline-block;
+    width: 24px;
+    border-top: 2px solid currentColor;
+}
+
+.metric-line.min {
+    border-top-style: dashed;
+}
+
+.metric-line.avg {
+    border-top-style: dotted;
+}
+
+.metric-line.max {
+    border-top-style: solid;
 }
 
 .metric-toggle.active.min {
@@ -528,15 +589,15 @@ input:disabled {
 }
 
 .metric-toggle.active.avg {
-    border-color: #16a34a;
-    background: #f0fdf4;
-    color: #16a34a;
+    border-color: #2563eb;
+    background: #eff6ff;
+    color: #2563eb;
 }
 
 .metric-toggle.active.max {
-    border-color: #dc2626;
-    background: #fef2f2;
-    color: #dc2626;
+    border-color: #2563eb;
+    background: #eff6ff;
+    color: #2563eb;
 }
 
 .compare-legend {

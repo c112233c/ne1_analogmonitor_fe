@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import {
     CartesianGrid,
     Legend,
@@ -29,6 +31,15 @@ const COLORS = [
     "#db2777",
     "#65a30d"
 ];
+
+function parseDate(value) {
+    return value ? new Date(`${value}T00:00:00`) : null;
+}
+
+function formatInputDate(date) {
+    if (!date) return "";
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
 
 function formatDate(value) {
     const date = new Date(value);
@@ -233,12 +244,12 @@ export default function AnalogComparePage() {
 
                     <label className="field">
                         <span>From</span>
-                        <input type="date" value={from} onChange={(event) => setFrom(event.target.value)} />
+                        <DatePicker selected={parseDate(from)} onChange={(date) => setFrom(formatInputDate(date))} dateFormat="dd/MM/yyyy" className="date-picker-input" />
                     </label>
 
                     <label className="field">
                         <span>To</span>
-                        <input type="date" value={to} onChange={(event) => setTo(event.target.value)} />
+                        <DatePicker selected={parseDate(to)} onChange={(date) => setTo(formatInputDate(date))} dateFormat="dd/MM/yyyy" className="date-picker-input" />
                     </label>
                 </div>
             </section>
@@ -334,6 +345,7 @@ export default function AnalogComparePage() {
                                 }
                                 onClick={() => toggleMetric(metric.key)}
                             >
+                                <span className={`metric-line ${metric.key}`} aria-hidden="true" />
                                 {metric.label}
                             </button>
                         ))}
@@ -396,8 +408,8 @@ export default function AnalogComparePage() {
                                             strokeDasharray={
                                                 metric.key === "min"
                                                     ? "5 3"
-                                                    : metric.key === "max"
-                                                        ? "2 2"
+                                                    : metric.key === "avg"
+                                                        ? "1 4"
                                                         : undefined
                                             }
                                         />

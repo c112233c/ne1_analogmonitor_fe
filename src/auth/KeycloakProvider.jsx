@@ -88,8 +88,9 @@ export function KeycloakProvider({ children }) {
     }, []);
 
     const user = keycloak.tokenParsed;
+    console.log(user)
     const userName =
-        user?.name ||
+        user?.given_name + ' (' + user?.preferred_username + ')' ||
         [user?.given_name, user?.family_name].filter(Boolean).join(" ") ||
         user?.preferred_username ||
         user?.email ||
